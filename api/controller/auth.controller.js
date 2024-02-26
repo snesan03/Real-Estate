@@ -13,6 +13,6 @@ export const signup=async (req,res,next)=>{
 
     }
     catch(err){
-        next(errorGenerator(500,"Its me, I am the problem")) 
+        next(err) 
     }
 }
