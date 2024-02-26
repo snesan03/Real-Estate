@@ -1,0 +1,65 @@
+[33mcommit 17a5b5549b02cdc933c74e448ebf57f065412d72[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Mon Feb 26 20:43:28 2024 +0530
+
+    Committing changes to SignUp.jsx before merging
+
+[33mcommit 28530f04a0a962591d827ad396d863c370e95262[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Mon Feb 26 19:19:07 2024 +0530
+
+    Created signUp page
+
+[33mcommit 8d99e2938dec4607d23e872f6e4de149bd4cf900[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Mon Feb 26 18:45:55 2024 +0530
+
+    Created error handling middleware
+
+[33mcommit 12896686fc742125a3d5b87883f683b1d414d289[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Sun Feb 25 19:31:37 2024 +0530
+
+    Created signup api route
+
+[33mcommit 2fed30c8409c713e3af8b82ffb9f3439f775180c[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Sun Feb 25 18:45:28 2024 +0530
+
+    Created test api router
+
+[33mcommit 9636528bd712df3bb21ce70692320e23a1cb9644[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Sun Feb 25 18:23:24 2024 +0530
+
+    Created user model
+
+[33mcommit 4b4ba952216aad6fa514c9efb80206ba065f3de3[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Sat Feb 24 19:21:00 2024 +0530
+
+    connected to database
+
+[33mcommit 1bf9daa6cc9ea2d62dfa2e69433d5ca9f5fd3537[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Sat Feb 24 18:44:51 2024 +0530
+
+    Created the server
+
+[33mcommit 02adf5094a5f17eab5a018efe1ac8bc0eedb4eea[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Fri Feb 23 20:06:29 2024 +0530
+
+    Created Header component
+
+[33mcommit 023ec6178b8703aea61685bd3b6a36e6ff3a3b31[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Fri Feb 23 18:35:44 2024 +0530
+
+    Added page routers
+
+[33mcommit 45267734d1e69693c20a0a5249b13f49089e1494[m
+Author: SSivanesan1812 <ssivanesan1812@gmail.com>
+Date:   Thu Feb 22 19:41:07 2024 +0530
+
+    Vite React and tailwind css setup completed
