@@ -1,5 +1,4 @@
-import { json } from 'express'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function SignUp() {
@@ -23,12 +22,12 @@ export default function SignUp() {
   }
   return (
     <div className='max-w-lg mx-auto'>
-      <h1 className='text-center font-bold text-xl py-4 '>SignUp</h1>
+      <h1 className='text-center font-bold text-lg py-4'>SignUp</h1>
       <form className='flex flex-col  gap-4 '>
-        <input type='text' placeholder='username' className='border p-3 rounded-lg' id='username' onChange={updateForm}></input>
-        <input type='text' placeholder='email' className='border p-3 rounded-lg' id='email' onChange={updateForm}></input>
-        <input type='text' placeholder='password' className='border p-3 rounded-lg' id='password' onChange={updateForm}></input>
-        <button  className='bg-slate-700 text-white rounded-lg hover:opacity-85 disabled:opacity-50 p-3 uppercase' onClick={savedata}>Sign Up</button>
+        <input type='text' placeholder='username' className='border p-3 rounded-lg' id='username'></input>
+        <input type='text' placeholder='email' className='border p-3 rounded-lg' id='email'></input>
+        <input type='text' placeholder='password' className='border p-3 rounded-lg' id='password'></input>
+        <button  className='bg-slate-700 text-white rounded-lg hover:opacity-85 disabled:opacity-50 p-3 uppercase'>Sign Up</button>
       </form>
 
     <div className='flex gap-2 pt-2.5'>
