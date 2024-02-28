@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { SignInFail,signInStart,signInSuccess } from '../../redux/user/userSlice'
+import { useDispatch,useSelector } from 'react-redux'
+
 
 export default function SignIn() {
   const [formdata,setformdata]=useState({})
-  const [loadstate,setloadstate]=useState(false)
-  const [error,seterror]=useState(null)
+  const { loadstate, error } = useSelector((state) => state.user);
   const navigate=useNavigate()
+  const dispatch=useDispatch()
   const updateForm=(e)=>{
     setformdata({
       ...formdata,
@@ -16,8 +19,10 @@ export default function SignIn() {
 
   }
   const validateData=async(e)=>{
+    e.preventDefault()
     try{
-      e.preventDefault()
+      dispatch(signInStart())
+      
       const res=await fetch('/api/auth/signin',{
         method:'POST',
         headers:{
@@ -25,23 +30,20 @@ export default function SignIn() {
         },
         body:JSON.stringify(formdata)
       })
-      setloadstate(true)
+      
       const data=await res.json()
       console.log(data)
       if(data.success==false){
-        setloadstate(false)
-        seterror(data.message)
+        dispatch(SignInFail(data.message))
         return
         
       }
-      setloadstate(false)
-      seterror(null)
+      dispatch(signInSuccess(data))
       navigate('/')
 
     }
     catch(err){
-      setloadstate(false);
-      seterror(error.message)
+      dispatch(SignInFail(err.message))
     }
   }
   return (
@@ -52,7 +54,7 @@ export default function SignIn() {
         <input type='text' placeholder='email' className='border p-3 rounded-lg' id='email' onChange={updateForm} ></input>
         <input type='text' placeholder='password' className='border p-3 rounded-lg' id='password' onChange={updateForm}></input>
         <button disabled={loadstate} className='bg-slate-700 text-white rounded-lg hover:opacity-85 disabled:opacity-50 p-3 uppercase' onClick={validateData}>
-        {!loadstate && "Sign In"} {loadstate && "Loading...."} </button>
+        {!loadstate? "Sign In":"Loading...."} </button>
       </form>
 
     <div className='flex gap-2 pt-2.5'>
@@ -63,6 +65,7 @@ export default function SignIn() {
       </span>
       </Link>
     </div>
+   
     {error && <p className='text-red-600'>
       
       {error}

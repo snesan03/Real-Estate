@@ -20,7 +20,7 @@ export default function Header() {
       <Link to={'/'}>
       <li className='hidden sm:inline'>Home</li>
       </Link>
-      <Link to={'/sign-up'}>
+      <Link to={'/signup'}>
       <li className='hidden sm:inline'>Sign Up</li>
       </Link>
       <Link className='focus:hover:underline' to={'/signin'}>
