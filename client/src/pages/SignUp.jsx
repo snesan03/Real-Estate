@@ -59,7 +59,7 @@ export default function SignUp() {
 
     <div className='flex gap-2 pt-2.5'>
       Have an account?
-      <Link to={'/sign-in'}>
+      <Link to={'/signin'}>
       <span className='text-blue-700 hover:underline'>
         sign in
       </span>
