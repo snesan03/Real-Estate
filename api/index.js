@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import user from './routes/user.route.js'
 import auth from './routes/auth.route.js'
-
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 
@@ -15,11 +15,13 @@ mongoose.connect(process.env.MONGO).then(()=>{
 
 const app=express()
 
+
 app.listen(3000,()=>{
     console.log("local host is running on port 3000!!!")
 })
 
 app.use(express.json());
+app.use(cookieParser())
 
 app.use('/api/user',user);
 
