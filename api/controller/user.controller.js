@@ -18,10 +18,10 @@ export const updateUser= async (req,res,next)=>{
         const data=await User.findByIdAndUpdate(req.params.id,
         {
             $set:{
-                username:req.body.username,
-                password:req.body.password,
-                email:req.body.email,
-                photo:req.body.avatar
+                username: req.body.username,
+                password: req.body.password,
+                email: req.body.email,
+                photo: req.body.photo
 
             }
 

@@ -7,7 +7,7 @@ export default function Header() {
 
 
   const { currentuser } = useSelector((state) => { return state.user});
-  console.log(currentuser)
+  // console.log(currentuser)
   return (
     
     
