@@ -12,8 +12,8 @@ export const signup=async (req,res,next)=>{
         res.status(201).json("User is created")
 
     }
-    catch(err){
-        next(err) 
+    catch(error){
+        next(error) 
     }
 }
 
@@ -69,4 +69,15 @@ export const google=async(req,res,next)=>{
         next(error)
     }
 
+}
+
+export const signout=(req,res,next)=>{
+    try {
+
+        res.clearCookie('Access_token')
+        res.status(201).json("User has been logged out")
+        
+    } catch (error) {
+        next(error)
+    }
 }

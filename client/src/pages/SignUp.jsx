@@ -27,7 +27,7 @@ export default function SignUp() {
         body:JSON.stringify(formdata)
       })
       setloadstate(true)
-      console.log(data)
+      
       const data=await res.json()
       console.log(data)
       if(data.success==false){
@@ -43,7 +43,7 @@ export default function SignUp() {
     }
     catch(err){
       setloadstate(false);
-      seterror(error.message)
+      seterror(err.message)
     }
   }
   return (
