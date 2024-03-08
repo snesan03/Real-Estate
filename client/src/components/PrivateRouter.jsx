@@ -6,7 +6,7 @@ export default function PrivateRouter() {
     const {currentuser}=useSelector((state)=>state.user)
   return (
     <div>
-    {currentuser ? <Outlet/>:Navigate('/signin')}
+    {currentuser ? <Outlet/>:<Navigate to={'/signin'}/>}
     </div>
   )
 }

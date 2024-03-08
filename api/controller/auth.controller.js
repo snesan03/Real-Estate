@@ -54,10 +54,10 @@ export const google=async(req,res,next)=>{
             const secPassword=bcryptjs.hashSync(password,10);
             const newUser=new User({username,email,password:secPassword,photo:photo});
             console.log(newUser);
-                await newUser.save()
-                const token=jwt.sign({id:validUser._id},process.env.JWT_SECRET_TOKEN)
-                const {password:pass,...rest}=validUser._doc
-                res.cookie('Access_token',token,{httpOnly:true}).status(200).json(rest)
+            await newUser.save()
+            const token=jwt.sign({id:newUser._id},process.env.JWT_SECRET_TOKEN)
+            const {password:pass,...rest}=validUser._doc
+            res.cookie('Access_token',token,{httpOnly:true}).status(200).json(rest)
 
             
           

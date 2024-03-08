@@ -37,6 +37,18 @@
             updateFail:(state,action)=>{
                 state.error=action.payload
                 state.loadstate=false
+            },
+            deleteStart:(state)=>{
+                state.loadstate=true
+            },
+            deleteSuccess:(state)=>{
+                state.currentuser=null
+                state.loadstate=false
+                state.error=null
+            },
+            deleteFail:(state,action)=>{
+                state.error=action.payload
+                state.loadstate=false
             }
 
 
@@ -45,5 +57,5 @@
         }
     })
     
-    export const {signInStart,signInSuccess,SignInFail,updateFail,updateStart,updateSuccess}=userSlice.actions
+    export const {signInStart,signInSuccess,SignInFail,updateFail,updateStart,updateSuccess,deleteFail,deleteStart,deleteSuccess}=userSlice.actions
     export default userSlice.reducer
