@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp'
 import About from './pages/About'
 import Header from './components/Header'
 import PrivateRouter from './components/PrivateRouter'
+import CreateList from './pages/CreateList'
 
 
 const App = () => {
@@ -21,7 +22,9 @@ const App = () => {
       <Route path='/signin' element={<SignIn/>}/>
       <Route path='/signup' element={<SignUp/>}/>
       <Route element={<PrivateRouter/>}>
-      <Route path='/profile' element={<Profile/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/createlist' element={<CreateList/>}/>
+        
       </Route>
     </Routes>
     </BrowserRouter>
