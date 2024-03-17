@@ -11,7 +11,7 @@ export default function CreateList() {
     const {currentuser}=useSelector((state)=>state.user)
     const navigate=useNavigate()
     const [formdata,setFormData]=useState({
-        imageUrl:[],
+        imageUrls:[],
          name: '',
     description: '',
     address: '',
@@ -39,9 +39,9 @@ export default function CreateList() {
             }
             Promise.all(promises).then((urls)=>{
                 setFormData({
-                    ...formdata,imageUrl:formdata.imageUrl.concat(urls)
+                    ...formdata,imageUrls:formdata.imageUrls.concat(urls)
                 })
-                console.log(formdata.imageUrl)
+                console.log(formdata.imageUrls)
                 setLoading(false)
             })
             .catch((err)=>{
@@ -57,7 +57,7 @@ export default function CreateList() {
             setLoading(false)
         }
         // setLoading(false)
-        console.log(formdata.imageUrl)
+        console.log(formdata.imageUrls)
     }
     const storeImage=async(im)=>{
         return new Promise((resolve,reject)=>{
@@ -91,7 +91,7 @@ export default function CreateList() {
     const handleRemoveImage = (index) => {
         setFormData({
           ...formdata,
-          imageUrl: formdata.imageUrl.filter((_, i) => i !== index),
+          imageUrls: formdata.imageUrls.filter((_, i) => i !== index),
         });
       };
       const handlechange=(e)=>{
@@ -116,16 +116,17 @@ export default function CreateList() {
             
       }
       const handlesumbmit=async(e)=>{
-        if(formdata.imageUrl.length<=0){
+        e.preventDefault()
+        if(formdata.imageUrls.length<=0){
             return setError("Atleast select one image")
             
         }
-        if(formdata.discountPrice>formdata.regularPrice){
+        if(+formdata.discountPrice>+formdata.regularPrice){
             return setError("Discounted price cannot be greater than regular price")
             
         }
         
-        e.preventDefault()
+        
         setsubmitloading(true)
         try {
 
@@ -230,8 +231,8 @@ export default function CreateList() {
                 </div>
                 <p className='text-red-500'>{error && error}</p>
 
-                {formdata.imageUrl.length > 0 &&
-            formdata.imageUrl.map((url, index) => (
+                {formdata.imageUrls.length > 0 &&
+            formdata.imageUrls.map((url, index) => (
               <div
                 key={url}
                 className='flex justify-between p-3 border items-center'
