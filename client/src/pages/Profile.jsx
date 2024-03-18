@@ -16,6 +16,8 @@ export default function Profile() {
   const [imError,SetImError]=useState(null)
   const [formdata,setFormData]=useState({})
   const [isSuccess,setSuccess]=useState(false)
+  const [listingError,setListingError]=useState(false)
+  const [listings,setListings]=useState([])
   const dispatch=useDispatch()
   // console.log(formdata)
   useEffect(()=>{
@@ -116,6 +118,19 @@ export default function Profile() {
       dispatch(signOutFail(error.message))
     }
   }
+  const handleShowListing=async()=>{
+      try {
+        const res=await fetch(`/api/list/userlisting/${currentuser._id}`,{
+          method:'GET',
+          'content-type':'Application/json'
+        })
+        const data=await res.json()
+        console.log(data)
+        setListings(data)
+      } catch (error) {
+        setListingError(error.message)
+      }
+  }
   return (
     <div className='max-w-lg mx-auto p-3'>
       <h1 className='text-3xl font-bold text-center p-3'>Profile</h1>
@@ -138,6 +153,36 @@ export default function Profile() {
       </div>
       {error && <span className='text-red-700'>{ error}</span>}
       {isSuccess && <span className='text-green-600'>Updated Successfullly</span>}
+      <p onClick={handleShowListing} className='mt-4 text-center text-green-500 hover:underline cursor-pointer'>Show listing</p>
+      {listingError && <p className='text-red-500 text-center'>{listingError}</p>}
+      {listings && listings.length>0 && 
+      <div className='flex flex-col gap-2'>
+        <h1 className='text-center mt-7 font-semibold text-3xl'>Your Listing</h1>{
+      listings.map((listing)=>(
+        
+          <div className='flex flex-row gap-9 justify-between items-center' key={listing.userRef}>
+            
+            
+            <Link  to={`listing/${currentuser._id}`}>
+              <img className='h-20 w-20 object-contain rounded-lg' alt={listing.name} src={listing.imageUrls[0]}></img>
+            </Link>
+            <Link to={`listing/${currentuser._id}`} className='flex-1 hover:underline truncate'>
+            <p>
+              {listing.name}
+            </p>
+            
+            </Link>
+            
+            
+              <div className='flex flex-col justify-around'>
+                <p className='text-red-600'>Delete</p>
+                <p className='text-red-600'>edit</p>
+              </div>
+          </div>
+          
+
+      ))}
+      </div>}
       
     </div>
   )
