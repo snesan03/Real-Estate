@@ -27,3 +27,20 @@ export const createUserListing=async (req,res,next)=>{
         next(error)
     }
 }
+
+export const deleteUserListing=async(req,res,next)=>{
+    
+        const listing=await Listing.findById(req.params.id)
+        if(!listing){
+            return next(errorGenerator(404,"List Not found"))
+        }
+        if(req.user.id!==listing.userRef){
+            return next(errorGenerator(401,"You can only delete your own list"))
+        }
+   try {
+    await Listing.findByIdAndDelete(req.params.id)
+    res.status(200).json("The Listing has been deleted")
+   } catch (error) {
+    next(error)
+   }
+}

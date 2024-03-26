@@ -126,10 +126,29 @@ export default function Profile() {
         })
         const data=await res.json()
         console.log(data)
-        setListings(data)
+        return setListings(data)
       } catch (error) {
         setListingError(error.message)
       }
+  }
+  const handleDeleteListing= async(listingId)=>{
+    try {
+      const res=await fetch(`/api/list/delete/${listingId}`,{
+        method:"Delete"
+      })
+      const data=await res.json()
+      console.log(data)
+      if(data.success===false){
+        setListingError(data.message)
+        return
+      }
+      
+        setListings((prev)=>prev.filter((listings)=>{return listings._id!==listingId}))
+        
+      
+    } catch (error) {
+      setListingError(error.message)
+    }
   }
   return (
     <div className='max-w-lg mx-auto p-3'>
@@ -160,7 +179,7 @@ export default function Profile() {
         <h1 className='text-center mt-7 font-semibold text-3xl'>Your Listing</h1>{
       listings.map((listing)=>(
         
-          <div className='flex flex-row gap-9 justify-between items-center' key={listing.userRef}>
+          <div className='flex flex-row gap-9 justify-between items-center' key={listing._id}>
             
             
             <Link  to={`listing/${currentuser._id}`}>
@@ -175,7 +194,7 @@ export default function Profile() {
             
             
               <div className='flex flex-col justify-around'>
-                <p className='text-red-600'>Delete</p>
+                <p onClick={()=>handleDeleteListing(listing._id)} className='text-red-600 hover:cursor-pointer'>Delete</p>
                 <p className='text-red-600'>edit</p>
               </div>
           </div>
