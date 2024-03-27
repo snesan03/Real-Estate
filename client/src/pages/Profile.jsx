@@ -182,10 +182,10 @@ export default function Profile() {
           <div className='flex flex-row gap-9 justify-between items-center' key={listing._id}>
             
             
-            <Link  to={`listing/${currentuser._id}`}>
+            <Link  to={`listing/${listing._id}`}>
               <img className='h-20 w-20 object-contain rounded-lg' alt={listing.name} src={listing.imageUrls[0]}></img>
             </Link>
-            <Link to={`listing/${currentuser._id}`} className='flex-1 hover:underline truncate'>
+            <Link to={`listing/${listing._id}`} className='flex-1 hover:underline truncate'>
             <p>
               {listing.name}
             </p>
@@ -195,7 +195,9 @@ export default function Profile() {
             
               <div className='flex flex-col justify-around'>
                 <p onClick={()=>handleDeleteListing(listing._id)} className='text-red-600 hover:cursor-pointer'>Delete</p>
+                <Link to= {`/updateList/${listing._id}`}>
                 <p className='text-red-600'>edit</p>
+                </Link>
               </div>
           </div>
           

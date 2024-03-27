@@ -44,3 +44,28 @@ export const deleteUserListing=async(req,res,next)=>{
     next(error)
    }
 }
+
+export const updateListing=async (req,res,next)=>{
+    const listing=await Listing.findById(req.params.id)
+    if(!listing){
+        return next(errorGenerator(404,"List Not found"))
+    }
+    if(req.user.id!==listing.userRef){
+        return next(errorGenerator(401,"You can only update your own list"))
+    }
+try {
+const updatedList=await Listing.findByIdAndUpdate(req.params.id,req.body,{new:true})
+res.status(200).json(updatedList)
+} catch (error) {
+next(error)
+}
+}
+
+export const getListing=async(req,res,next)=>{
+    try {
+        const list=await Listing.findById(req.params.id)
+        res.status(201).json(list)
+    } catch (error) {
+        next(error)
+    }
+}
