@@ -160,7 +160,7 @@ export default function UpdateList() {
                     setsubmitloading(false)
                     console.log(data)
                 }
-                navigate(`/listing/${currentuser._id}`)
+                navigate(`/listing/${data._id}`)
         setsubmitloading(false)
                 
             } catch (error) {
