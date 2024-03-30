@@ -20,6 +20,7 @@ export default function Listing() {
     const [listing,setListing]=useState(null)
     const [error,setError]=useState(false)
     const [loading,setLoading]=useState(false)
+    const [copied,setCopied]=useState(false)
     useEffect(()=>{
         const fetchListing=async()=>{
             setLoading(true)
@@ -68,6 +69,23 @@ export default function Listing() {
                 )}
             </Swiper>
         </div>)}
+        <div className='fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer'>
+            <FaShare
+              className='text-slate-500'
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                setCopied(true);
+                setTimeout(() => {
+                  setCopied(false);
+                }, 2000);
+              }}
+            />
+          </div>
+          {copied && (
+            <p className='fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2'>
+              Link copied!
+            </p>
+          )}
         <p className='text-center font-bold text-4xl p-3'>{listing && listing.name}</p>
         {listing && ( <div className='max-w-4xl mx-auto'>
         <div className='flex flex-col gap-3'>
