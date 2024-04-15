@@ -20,7 +20,7 @@ export default function Header() {
   const { currentuser } = useSelector((state) => { return state.user});
   useEffect(()=>{
     const urlQuery=new URLSearchParams(location.search)
-    const searchTerm=urlQuery.get("searchTerm");
+    const searchTerm=urlQuery.get("searchTerm") || "";
     setSearchTerm(searchTerm)
 
 

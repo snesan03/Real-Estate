@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {  useNavigate } from 'react-router-dom'
+import ListingCard from '../components/ListingCard'
 export default function Search() {
     const [loading,setLoading]=useState(false)
     const [error,setError]=useState(false)
     const [listings,setListings]=useState({})
-    // console.log(listings);
+    console.log(listings);
     useEffect(()=>{
         const urlparam =new URLSearchParams(location.search)
-        const searchTerm=urlparam.get("searchTerm")
+        const searchTerm=urlparam.get("searchTerm") || ""
         const parking=urlparam.get("parking")
         const type=urlparam.get("type")
         const furnished=urlparam.get("furnished")
@@ -149,8 +150,17 @@ export default function Search() {
             
         </form>
 
-        <div className="text-2xl font-bold">
-            Listings Results:
+        <div className="flex-1">
+            <p className='text-2xl font-bold'>Listings Results:</p>
+            <div className='p-7 flex flex-wrap gap-4'>
+            {!loading && listings.length===0 && 
+            "No Listing found"}
+            {loading && "Loading"}
+            {!loading && Array.isArray(listings) && listings.map((listing) => (
+  <ListingCard key={listing._id} listing={listing} />
+
+))}</div>
+
         </div>
     </div>
   )
