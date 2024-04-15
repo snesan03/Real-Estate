@@ -5,6 +5,7 @@ export default function Search() {
     const [loading,setLoading]=useState(false)
     const [error,setError]=useState(false)
     const [listings,setListings]=useState({})
+    const [showMore,setShowMore]=useState(false)
     console.log(listings);
     useEffect(()=>{
         const urlparam =new URLSearchParams(location.search)
@@ -29,6 +30,7 @@ export default function Search() {
 
         const fetchListings=async()=>{
             setLoading(true)
+            setShowMore(false)
             const searchQuery=urlparam.toString()
             try {
             const res=await fetch(`api/list/get?${searchQuery}`)
@@ -39,6 +41,11 @@ export default function Search() {
                 console.log(data.message)
                 return
             }
+            if (data.length > 8) {
+                setShowMore(true);
+              } else {
+                setShowMore(false);
+              }
             setListings(data)
             setLoading(false)
             
@@ -93,6 +100,19 @@ export default function Search() {
         const searchQuery=urlparam.toString();
         navigate(`/search?${searchQuery}`)
         
+    }
+    const onShowMoreClick=async()=>{
+        const numberOfListings = listings.length;
+    const startIndex = numberOfListings;
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('startIndex', startIndex);
+    const searchQuery = urlParams.toString();
+    const res = await fetch(`/api/list/get?${searchQuery}`);
+    const data = await res.json();
+    if (data.length < 9) {
+      setShowMore(false);
+    }
+    setListings([...listings, ...data]);
     }
   return (
     <div className='flex flex-col gap-3  p-3 md:flex-row '>
@@ -159,7 +179,17 @@ export default function Search() {
             {!loading && Array.isArray(listings) && listings.map((listing) => (
   <ListingCard key={listing._id} listing={listing} />
 
-))}</div>
+))}
+
+{showMore && (
+            <button
+              onClick={onShowMoreClick}
+              className='text-green-700 hover:underline p-7 text-center w-full'
+            >
+              Show more
+            </button>
+          )}
+    </div>
 
         </div>
     </div>
