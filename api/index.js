@@ -5,6 +5,8 @@ import user from './routes/user.route.js'
 import auth from './routes/auth.route.js'
 import List from './routes/list.route.js'
 import cookieParser from 'cookie-parser'
+import path from 'path'
+
 
 dotenv.config()
 mongoose.connect(process.env.MONGO).then(()=>{
@@ -12,6 +14,8 @@ mongoose.connect(process.env.MONGO).then(()=>{
 }).catch((err)=>{
     console.log(err)
 })
+
+const __dirname = path.resolve();
 
 const app=express()
 
@@ -28,6 +32,13 @@ app.use('/api/user',user);
 app.use('/api/auth',auth);
 
 app.use('/api/list',List)
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
+
 
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode || 500;
