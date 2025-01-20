@@ -11,6 +11,7 @@ export default function SignIn() {
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const updateForm=(e)=>{
+    
     setformdata({
       ...formdata,
       [e.target.id]:e.target.value
@@ -21,6 +22,10 @@ export default function SignIn() {
   }
   const validateData=async(e)=>{
     e.preventDefault()
+    if(!formdata.email || !formdata.password){
+      dispatch(SignInFail("Cannot be empty"));
+      return;
+    }
     try{
       dispatch(signInStart())
       
@@ -49,10 +54,11 @@ export default function SignIn() {
   }
   return (
     <div className='max-w-lg mx-auto'>
+      {console.log(error)}
       <h1 className='text-center font-bold text-lg py-4'>Sign In</h1>
       <form className='flex flex-col  gap-4 '>
        
-        <input type='text' placeholder='email' className='border p-3 rounded-lg' id='email' onChange={updateForm} ></input>
+        <input type='text'  required placeholder='email' className='border p-3 rounded-lg' id='email' onChange={updateForm} ></input>
         <input type='text' placeholder='password' className='border p-3 rounded-lg' id='password' onChange={updateForm}></input>
         <button disabled={loadstate} className='bg-slate-700 text-white rounded-lg hover:opacity-85 disabled:opacity-50 p-3 uppercase' onClick={validateData}>
         {!loadstate? "Sign In":"Loading...."} </button>

@@ -104,7 +104,7 @@ export default function Listing() {
                     {listing && (listing.type==="rent"?"For Rent":"For Selling")}
                 </button>
                 <button className='bg-green-800 p-3 rounded-md w-full max-w-[200px] text-center text-white'>
-                    ${listing && (listing.regularPrice-listing.discountPrice)+ " "} Discount
+                    ${listing && (listing.regularPrice-listing.discountPrice)+ " "} 
                 </button>
                 
             </div>

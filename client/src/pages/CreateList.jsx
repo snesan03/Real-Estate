@@ -95,7 +95,7 @@ export default function CreateList() {
         });
       };
       const handlechange=(e)=>{
-            if(e.target.id==="sell" || e.target.id==="rent"){
+            if(e.target.id==="sale" || e.target.id==="rent"){
                 setFormData({
                     ...formdata,
                     type:e.target.id,
@@ -144,7 +144,7 @@ export default function CreateList() {
                     setsubmitloading(false)
                     console.log(data)
                 }
-                navigate(`/listing/${currentuser._id}`)
+                navigate(`/listing/${data._id}`)
         setsubmitloading(false)
                 
             } catch (error) {
@@ -159,7 +159,7 @@ export default function CreateList() {
     
     
     <main className='max-w-4xl mx-auto p-3'>
-        {/* {console.log(formdata)} */}
+        {console.log(formdata)}
         
         <p className='font-bold text-2xl text-center p-3'>Create Listing</p>
         <form onSubmit={handlesumbmit} className='flex flex-col sm:flex-row gap-6'>
@@ -173,7 +173,7 @@ export default function CreateList() {
             
             <div className='flex flex-row gap-6 flex-wrap'>
                 <div className='flex flex-row gap-2 '>
-                <input className='w-5' type='checkbox' id='sell' onChange={handlechange} checked={formdata.type==="sell"}></input>
+                <input className='w-5' type='checkbox' id='sale' onChange={handlechange} checked={formdata.type==="sale"}></input>
                 <span>Sell</span>
                 </div>
                 <div className='flex flex-row gap-2 '>

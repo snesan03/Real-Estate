@@ -7,7 +7,6 @@ import List from './routes/list.route.js'
 import cookieParser from 'cookie-parser'
 
 dotenv.config()
-
 mongoose.connect(process.env.MONGO).then(()=>{
     console.log("MogoDB is connected")
 }).catch((err)=>{

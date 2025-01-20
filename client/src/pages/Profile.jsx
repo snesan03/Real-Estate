@@ -182,10 +182,10 @@ export default function Profile() {
           <div className='flex flex-row gap-9 justify-between items-center' key={listing._id}>
             
             
-            <Link  to={`listing/${listing._id}`}>
+            <Link  to={`/listing/${listing._id}`}>
               <img className='h-20 w-20 object-contain rounded-lg' alt={listing.name} src={listing.imageUrls[0]}></img>
             </Link>
-            <Link to={`listing/${listing._id}`} className='flex-1 hover:underline truncate'>
+            <Link to={`/listing/${listing._id}`} className='flex-1 hover:underline truncate'>
             <p>
               {listing.name}
             </p>

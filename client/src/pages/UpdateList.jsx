@@ -111,7 +111,7 @@ export default function UpdateList() {
         });
       };
       const handlechange=(e)=>{
-            if(e.target.id==="sell" || e.target.id==="rent"){
+            if(e.target.id==="sale" || e.target.id==="rent"){
                 setFormData({
                     ...formdata,
                     type:e.target.id,
@@ -189,8 +189,8 @@ export default function UpdateList() {
             
             <div className='flex flex-row gap-6 flex-wrap'>
                 <div className='flex flex-row gap-2 '>
-                <input className='w-5' type='checkbox' id='sell' onChange={handlechange} checked={formdata.type==="sell"}></input>
-                <span>Sell</span>
+                <input className='w-5' type='checkbox' id='sale' onChange={handlechange} checked={formdata.type==="sale"}></input>
+                <span>sale</span>
                 </div>
                 <div className='flex flex-row gap-2 '>
                 <input className='w-5' type='checkbox' id='rent' onChange={handlechange} checked={formdata.type==="rent"}></input>
