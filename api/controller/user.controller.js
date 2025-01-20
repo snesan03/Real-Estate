@@ -1,3 +1,4 @@
+import Listing from "../model/list.model.js"
 import User from "../model/user.model.js"
 import { errorGenerator } from "../utils/error.js"
 import bcryptjs from 'bcryptjs'
@@ -41,6 +42,10 @@ export const deleteUser= async (req,res,next)=>{
         if(req.user.id!==req.params.id){return next(errorGenerator(401,"You can only delete your own account!"))}
 
         const data=await User.findByIdAndDelete(req.params.id)
+        const data1=await Listing.deleteMany(
+            {
+                userRef: req.params.id
+            })
         res.clearCookie("Access_token")
         res.status(200).json("User has been deleted")
 
